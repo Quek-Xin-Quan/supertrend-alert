@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
+# Ensure token is not exposed if caller enabled shell tracing.
+set +x
 
 OWNER="${OWNER:-Quek-Xin-Quan}"
 REPO="${REPO:-supertrend-alert}"
