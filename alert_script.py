@@ -14,7 +14,7 @@ GIST_ID            = os.environ["GIST_ID"]
 # ── Symbols — comma-separated list e.g. "GC=F,BTC-USD,AAPL,ETH-USD"
 # Set SYMBOLS as a GitHub Variable, or edit the default here
 SYMBOLS  = [s.strip() for s in os.environ.get("SYMBOLS", "GC=F,EURUSD=X,GBPUSD=X,AUDUSD=X,USDCAD=X,USDJPY=X,NZDUSD=X").split(",")]
-INTERVAL = os.environ.get("INTERVAL", "1h")
+INTERVAL = os.environ.get("INTERVAL", "5m")
 
 # ── Indicator Settings ────────────────────────────────────────────────────────
 ATR_LEN         = int(os.environ.get("ATR_LEN",          "10"))
