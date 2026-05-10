@@ -1,0 +1,34 @@
+name: ML SuperTrend Alert
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'   # Runs every 5 minutes (GitHub's minimum interval)
+  workflow_dispatch:          # Also allows manual trigger from GitHub UI
+
+jobs:
+  run-alert:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install yfinance pandas numpy requests
+
+      - name: Run alert script
+        env:
+          # ── Secrets (set in GitHub → Settings → Secrets and variables → Actions)
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+          GIST_TOKEN:         ${{ secrets.GIST_TOKEN }}
+          GIST_ID:            ${{ secrets.GIST_ID }}
+          # ── Variables (set in GitHub → Settings → Secrets and variables → Variables)
+          SYMBOL:             ${{ vars.SYMBOL }}
+          INTERVAL:           ${{ vars.INTERVAL }}
+        run: python alert_script.py
