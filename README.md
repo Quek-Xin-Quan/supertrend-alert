@@ -4,7 +4,7 @@ This repository runs `alert_script.py` via GitHub Actions.
 
 ## Existing workflow trigger
 
-The workflow file `/home/runner/work/supertrend-alert/supertrend-alert/.github/workflows/alert.yml` already includes:
+The workflow file `.github/workflows/alert.yml` already includes:
 
 - `schedule` (every 5 minutes)
 - `workflow_dispatch` (manual/API trigger)
