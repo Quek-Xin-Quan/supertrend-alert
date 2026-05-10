@@ -58,7 +58,7 @@ Or use the helper script in `scripts/dispatch_alert_workflow.sh`.
 Example:
 
 ```cron
-*/5 * * * * . "$HOME/.supertrend_dispatch_env"; /bin/bash /absolute/path/to/supertrend-alert/scripts/dispatch_alert_workflow.sh >> /var/log/supertrend-dispatch.log 2>&1
+*/5 * * * * . "$HOME/.supertrend_dispatch_env"; /bin/bash /absolute/path/to/supertrend-alert/scripts/dispatch_alert_workflow.sh >> "$HOME/logs/supertrend-dispatch.log" 2>&1
 ```
 
 ### 4) Verify

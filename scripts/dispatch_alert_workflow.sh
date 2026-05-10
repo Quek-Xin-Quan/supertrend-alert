@@ -13,10 +13,17 @@ if [[ -z "${GITHUB_PAT:-}" ]]; then
   exit 1
 fi
 
-api_url="https://api.github.com/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW_FILE}/dispatches"
-payload="{\"ref\":\"${REF}\"}"
+safe_pattern='^[A-Za-z0-9._/-]+$'
+for v in "$OWNER" "$REPO" "$WORKFLOW_FILE" "$REF"; do
+  if [[ ! "$v" =~ $safe_pattern ]]; then
+    echo "ERROR: Invalid characters detected in configuration values." >&2
+    exit 1
+  fi
+done
 
-echo "[$(date -u +"%Y-%m-%dT%H:%M:%SZ")] Dispatching ${OWNER}/${REPO}:${WORKFLOW_FILE} on ref=${REF}"
+api_url="https://api.github.com/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW_FILE}/dispatches"
+payload="$(printf '{"ref":"%s"}' "$REF")"
+printf '[%s] Dispatching %s/%s:%s on ref=%s\n' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" "$OWNER" "$REPO" "$WORKFLOW_FILE" "$REF"
 
 curl --silent --show-error --fail-with-body \
   --retry 3 \
@@ -28,4 +35,4 @@ curl --silent --show-error --fail-with-body \
   "${api_url}" \
   -d "${payload}"
 
-echo "[$(date -u +"%Y-%m-%dT%H:%M:%SZ")] Dispatch request accepted."
+printf '[%s] Dispatch request accepted.\n' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
