@@ -23,9 +23,9 @@ done
 
 api_url="https://api.github.com/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW_FILE}/dispatches"
 payload="$(printf '{"ref":"%s"}' "$REF")"
-printf '[%s] Dispatching %s/%s:%s on ref=%s\n' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" "$OWNER" "$REPO" "$WORKFLOW_FILE" "$REF"
+printf '[%s] Dispatching workflow %s in %s/%s on ref=%s\n' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" "$WORKFLOW_FILE" "$OWNER" "$REPO" "$REF"
 
-curl --silent --show-error --fail-with-body \
+curl --fail-with-body \
   --retry 3 \
   --retry-delay 2 \
   --retry-all-errors \
