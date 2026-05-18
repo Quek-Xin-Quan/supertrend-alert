@@ -28,6 +28,6 @@ jobs:
           GIST_ID:            ${{ secrets.GIST_ID }}
           OANDA_TOKEN:        ${{ secrets.OANDA_TOKEN }}
           OANDA_ENV:          practice
-          SYMBOLS:            ${{ vars.SYMBOLS }}
-          INTERVAL:           ${{ vars.INTERVAL }}
+          SYMBOLS:            "XAU_USD,EUR_USD,GBP_USD,AUD_USD,USD_CAD,USD_JPY,NZD_USD"
+          INTERVAL:           "M5"
         run: python alert_script.py
