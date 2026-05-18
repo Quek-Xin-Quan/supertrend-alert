@@ -17,8 +17,8 @@ OANDA_ENV          = os.environ.get("OANDA_ENV", "practice")  # "practice" = dem
  
 # ── Symbols — OANDA format, comma-separated
 # Set SYMBOLS as a GitHub Variable, or edit the default here
-SYMBOLS  = [s.strip() for s in os.environ.get("SYMBOLS", "XAU_USD,EUR_USD,GBP_USD,AUD_USD,USD_CAD,USD_JPY,NZD_USD").split(",")]
-INTERVAL = os.environ.get("INTERVAL", "M5")  # M1, M5, M15, H1, H4, D
+SYMBOLS  = ["XAU_USD", "EUR_USD", "GBP_USD", "AUD_USD", "USD_CAD", "USD_JPY", "NZD_USD"]
+INTERVAL = "M5"  # M1, M5, M15, H1, H4, D
  
 # ── Indicator Settings ────────────────────────────────────────────────────────
 ATR_LEN         = int(os.environ.get("ATR_LEN",          "10"))
