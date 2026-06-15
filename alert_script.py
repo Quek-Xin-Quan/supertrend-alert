@@ -23,7 +23,7 @@ INTERVAL = "H1"  # M1, M5, M15, H1, H4, D
 # ── Indicator Settings ────────────────────────────────────────────────────────
 ATR_LEN         = int(os.environ.get("ATR_LEN",          "10"))
 FACTOR          = float(os.environ.get("FACTOR",          "3.0"))
-TRAINING_PERIOD = int(os.environ.get("TRAINING_PERIOD",  "500"))
+TRAINING_PERIOD = int(os.environ.get("TRAINING_PERIOD",  "100"))
 HIGH_VOL_PCT    = float(os.environ.get("HIGH_VOL_PCT",    "0.75"))
 MID_VOL_PCT     = float(os.environ.get("MID_VOL_PCT",     "0.50"))
 LOW_VOL_PCT     = float(os.environ.get("LOW_VOL_PCT",     "0.25"))
